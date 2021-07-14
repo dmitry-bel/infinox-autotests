@@ -1,0 +1,22 @@
+plugins {
+    id 'java'
+}
+
+group 'org.dmitry_bel'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'junit:junit:4.13.1'
+    implementation 'org.testng:testng:7.1.0'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
+    testImplementation 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
+    testImplementation 'com.codeborne:selenide:5.22.2'
+}
+
+test {
+    useJUnitPlatform()
+}
