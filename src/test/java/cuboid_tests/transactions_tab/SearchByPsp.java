@@ -5,10 +5,10 @@ import com.codeborne.selenide.ElementsCollection;
 import cuboid_tests.Utils;
 import org.junit.jupiter.api.Test;
 
+import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selectors.*;
-import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.$$;
+import static com.codeborne.selenide.Selenide.*;
 
 
 public class SearchByPsp {
@@ -20,21 +20,15 @@ public class SearchByPsp {
         // log in admin
         Utils.login();
 
-        // set up needed date
-        $(byId("dateFromInput")).clear();
-        $(byId("dateFromInput")).setValue(neededDate).pressEnter();
-        $(byId("dateToInput")).clear();
-        $(byId("dateToInput")).setValue(neededDate).pressEnter();
-        $(byId("showButton")).shouldBe(visible).click();
+        // set up needed date and PSP
+        Utils.setDateRange(neededDate, neededDate);
 
-        // set up PSP
         $(byCssSelector("button.dropdown-toggle")).shouldBe(visible).click();
+        $(byText("Bank - Wealthum")).shouldBe(visible).click();
+        Utils.clickUpdateButton();
 
-
-        // get list of displayed dates
+        // check that displayed correct value of transactions
         ElementsCollection result = $$(byClassName("created-date"));
-        result.shouldHave(CollectionCondition.size(50));
-
-        // how to make an array of strings???
+        result.filter(text(neededDate)).shouldHave(CollectionCondition.size(6));
     }
 }

@@ -24,11 +24,8 @@ public class SearchByDate {
         Utils.login();
 
         // set up needed interval
-        $(byId("dateFromInput")).clear();
-        $(byId("dateFromInput")).setValue(dateFrom).pressEnter();
-        $(byId("dateToInput")).clear();
-        $(byId("dateToInput")).setValue(dateTo).pressEnter();
-        $(byId("showButton")).shouldBe(visible).click();
+        Utils.setDateRange(dateFrom, dateTo);
+        Utils.clickUpdateButton();
 
         // get list of displayed dates
         ElementsCollection result = $$(byClassName("created-date"));

@@ -14,16 +14,17 @@ public class SearchByOrder {
     @Test
     void searchByOrder() {
         String orderId = "346996";
+        String dateFrom = "20/06/2021";
 
         // log in admin
         Utils.login();
 
-        // try to search transaction by order id
-        element(byId("dateFromInput")).clear();
-        element(byId("dateFromInput")).setValue("20/06/2021").pressEnter();
+        // set needed date
+        Utils.setDateFrom(dateFrom);
 
+        // try to search transaction by order id
         element(byId("orderId")).setValue(orderId);
-        element(byId("showButton")).shouldBe(visible).click();
+        Utils.clickUpdateButton();
         element(byId("transactionOrder")).shouldHave(text(orderId));
     }
 }
