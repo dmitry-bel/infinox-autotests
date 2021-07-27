@@ -2,7 +2,6 @@ package cuboid_tests.transactions_tab;
 
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.ElementsCollection;
-import com.codeborne.selenide.Selenide;
 import cuboid_tests.Utils;
 import org.junit.jupiter.api.Test;
 
